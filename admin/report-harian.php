@@ -31,6 +31,48 @@ include "templates/sidebar-report.php";
     <!-- Main content -->
     <section class="content">
 
+    <!-- Filter Card -->
+    <div class="card card-primary">
+        <div class="card-header">
+          <h3 class="card-title"><i class="fas fa-filter mr-2"></i>Filter Report Harian</h3>
+        </div>
+        <form method="POST" action="report-harian.php">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="tgl1">Tanggal Awal</label>
+                  <input type="date" class="form-control" id="tgl1" name="tgl1" required>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="tgl2">Tanggal Akhir</label>
+                  <input type="date" class="form-control" id="tgl2" name="tgl2" required>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>&nbsp;</label>
+                  <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fas fa-search mr-2"></i>Filter
+                  </button>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>&nbsp;</label>
+                  <a href="report-harian.php" class="btn btn-secondary btn-block">
+                    <i class="fas fa-redo mr-2"></i>Reset
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+    </div>
+    <!-- /.card -->
+
     <div class="card">
         <div class="card-header">
           <h3 class="card-title"><i class="fas fa-book mr-3"></i>Data Pengaduan Kerusakan Barang</h3>
@@ -63,6 +105,7 @@ include "templates/sidebar-report.php";
                 <th>Status</th>
                 <th>Catatan</th>
                 <th>Tgl</th>
+                <th>Ditindak Oleh</th>
                 <th>Estimasi Biaya</th>
               </thead>
               <tbody align="center">
@@ -74,7 +117,7 @@ include "templates/sidebar-report.php";
                 } else {
                 $tgl1 = $_POST['tgl1'];
                 $tgl2 = $_POST['tgl2'];
-                $data = query("SELECT * FROM pengaduan WHERE tgl_lapor BETWEEN '$tgl1' AND '$tgl2'");
+                $data = query("SELECT p.*, COALESCE(u.name, '-') as ditindak_oleh FROM pengaduan p LEFT JOIN pengaduan_assignment pa ON p.id = pa.pengaduan_id LEFT JOIN user u ON pa.assigned_to = u.user_id WHERE p.tgl_lapor BETWEEN '$tgl1' AND '$tgl2'");
                 }
                 foreach ($data as $d) :
                 ?>
@@ -88,13 +131,13 @@ include "templates/sidebar-report.php";
                   <td><?= $d['status']; ?></td>
                   <td><?= $d['ket_petugas']; ?></td>
                   <td><?= $d['tgl_lapor']; ?></td>
+                  <td><?= $d['ditindak_oleh']; ?></td>
                   <td><?= (isset($d['estimasi_biaya']) && $d['estimasi_biaya'] !== null && $d['estimasi_biaya'] !== '') ? 'Rp ' . number_format((float)$d['estimasi_biaya'], 0, ',', '.') : '-'; ?></td>
                 </tr>
                 <?php
                 endforeach;
                 ?>
               </tbody>
-              <tfoot align="center">
                 <th>No.</th>
                 <th>Nama Pegawai</th>
                 <th>Jabatan</th>
@@ -104,8 +147,9 @@ include "templates/sidebar-report.php";
                 <th>Status</th>
                 <th>Catatan</th>
                 <th>Tgl</th>
+                 <th>Ditindak Oleh</th>
                 <th>Estimasi Biaya</th>
-              </tfoot>
+               
             </table>
           </div>
         </div>

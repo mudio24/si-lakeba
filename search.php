@@ -2,11 +2,12 @@
 include 'templates/header.php';
 require 'function.php';
 ?>      
-<div class="hero-content">
-  <h1 class="display-4 mb-4">Status Pengaduan Anda</h1>
 
-  <div class="row justify-content-center">
-    <div class="col-lg-8">
+<div class="row align-items-center">
+  <div class="col-lg-10 hero-content">      
+    <div class="container main-content">
+      <h1 class="display-4 mb-4">Status Pengaduan Anda</h1>
+      
       <?php
         $keyword = $_POST['keyword'];
         $data = query("SELECT p.*, pa.assigned_to, pa.assigned_at, u.name AS assigned_name FROM pengaduan p LEFT JOIN pengaduan_assignment pa ON pa.pengaduan_id = p.id LEFT JOIN user u ON u.user_id = pa.assigned_to WHERE p.id = '$keyword'");
@@ -70,16 +71,20 @@ require 'function.php';
       ?>
       
       <div class="text-center mt-3">
-        <a href="index.php" class="btn btn-primary">
-          <span class="fas fa-arrow-left mr-2"></span>Kembali ke Beranda
-        </a>
+        <form action="index.php" method="get">
+          <button type="submit" class="btn btn-primary">
+            <span class="fas fa-arrow-left mr-2"></span>Kembali ke Beranda
+          </button>
+        </form>
       </div>
     </div>
-  </div>
-</div>
+  </div>   
 
-<div class="text-center mt-4">
-  <p>Created by <a href='https://www.instagram.com/io.dii/' title='instagram' target='_blank'>io.dii</a></p>
+
+<div class="container main-content">
+  <div class="text-center">
+    <p>Created by <a href='https://www.instagram.com/io.dii/' title='instagram' target='_blank'>io.dii</a></p>
+  </div>
 </div>
 
 <?php

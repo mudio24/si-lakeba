@@ -4,7 +4,47 @@ require 'function.php';
 
 if (isset($_POST['submit'])) {
     if (insertPengaduan($_POST) > 0) {
-        echo "<script>alert('Data pengaduan Anda berhasil terkirim.'); window.location='index.php';</script>";
+        // Ambil data yang baru saja diinput
+        $id = $_POST['id'];
+        $nama = $_POST['nama'];
+        $jabatan = $_POST['jabatan'];
+        $dept = $_POST['dept'];
+        $nama_barang = $_POST['nama_barang'];
+        $ket = $_POST['ket'];
+        $tanggal = date('Y-m-d H:i:s');
+        
+        // Buat konten file download
+        $content = "===== BUKTI PENGADUAN =====\n\n";
+        $content .= "Nomor Pengaduan: " . $id . "\n";
+        $content .= "Tanggal: " . $tanggal . "\n";
+        $content .= "Nama Pelapor: " . $nama . "\n";
+        $content .= "Jabatan: " . $jabatan . "\n";
+        $content .= "Departemen: " . $dept . "\n";
+        $content .= "Nama Barang: " . $nama_barang . "\n";
+        $content .= "Keterangan: " . $ket . "\n\n";
+        $content .= "===========================\n";
+        $content .= "Simpan bukti ini untuk pengecekan status pengaduan.\n";
+        $content .= "Cek status di: [URL Website Anda]\n";
+        
+        // Encode konten untuk JavaScript
+        $encodedContent = base64_encode($content);
+        $filename = "Pengaduan_" . $id . ".txt";
+        
+        echo "<script>
+            // Auto download file
+            var content = atob('" . $encodedContent . "');
+            var blob = new Blob([content], { type: 'text/plain' });
+            var link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.download = '" . $filename . "';
+            link.click();
+            
+            // Redirect setelah download
+            setTimeout(function() {
+                alert('Data pengaduan Anda berhasil terkirim dan bukti telah diunduh.');
+                window.location='index.php';
+            }, 500);
+        </script>";
     } else {
         echo "<script>alert('Data pengaduan Anda gagal terkirim.'); window.location='form-pengaduan.php';</script>";
     }
@@ -114,6 +154,7 @@ $departemen = [
     </div>
   </div>
 </div>
+<!-- Kolom Gambar (Kanan) -->
 <div class="col-lg-6 text-center d-none d-lg-block">
   <img src="assets/img/homepage2.png" class="hero-img img-fluid" alt="Ilustrasi Pengaduan">
 </div>

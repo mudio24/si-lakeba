@@ -23,8 +23,6 @@ include '../function.php';
   <link rel="stylesheet" href="../assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../assets/dist/css/adminlte.min.css">
-  <!-- jQuery -->
-  <link rel="stylesheet" href="../assets/plugins/jquery-ui/jquery-ui.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->

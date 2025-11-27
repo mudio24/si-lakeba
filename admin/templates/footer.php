@@ -25,11 +25,10 @@
 
 <!-- jQuery -->
 <script src="../assets/plugins/jquery/jquery.min.js"></script>
-<script src="../assets/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="../assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/plugins/bootstrap4/js/bootstrap.min.js"></script>
 <!-- DataTables  & Plugins -->
-<script src="../assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../assets/plugins/datatables-bs4/datatables/jquery.dataTables.min.js"></script>
 <script src="../assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="../assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
@@ -92,22 +91,70 @@
     });
   });
 </script>
-<script>
-  $(function() {
-    $.datepicker.setDefaults({
-      dateFormat: 'yy-mm-dd'
-    })
-    $("#datepicker1"). datepicker({
-      changeMonth: true,
-      changeYear: true,
-      showButtonPanel: true
-    });
-    $("#datepicker2"). datepicker({
-      changeMonth: true,
-      changeYear: true,
-      showButtonPanel: true
-    });
-  });
-</script>
+
+
+<!-- Modal Notifikasi (pindah dari header.php) -->
+<div class="modal fade" id="notificationModal" tabindex="-1" role="dialog" aria-labelledby="notificationModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="notificationModalLabel">
+          <i class="fas fa-bell mr-2"></i>Pengaduan Baru
+        </h5>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <?php 
+        $pengaduan_baru = query("SELECT * FROM pengaduan WHERE status='Sedang diajukan' ORDER BY tgl_lapor DESC LIMIT 10");
+        if (!empty($pengaduan_baru)): 
+        ?>
+          <div class="table-responsive">
+            <table class="table table-hover table-sm">
+              <thead class="bg-light">
+                <tr>
+                  <th>No. Pengaduan</th>
+                  <th>Pelapor</th>
+                  <th>Barang</th>
+                  <th>Tanggal</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach ($pengaduan_baru as $p): ?>
+                <tr>
+                  <td><strong><?= $p['id']; ?></strong></td>
+                  <td><?= $p['n_pelapor']; ?></td>
+                  <td><?= $p['n_barang']; ?></td>
+                  <td><?= date('d/m/Y', strtotime($p['tgl_lapor'])); ?></td>
+                  <td>
+                    <a href="detail-pengaduan.php?id=<?= $p['id']; ?>" class="btn btn-sm btn-outline-primary" style="padding: 4px 8px; font-size: 12px;">
+                      <i class="fas fa-eye"></i> Lihat
+                    </a>
+                  </td>
+                </tr>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
+          </div>
+        <?php else: ?>
+          <div class="alert alert-info">
+            <i class="fas fa-info-circle mr-2"></i>
+            <strong>Tidak ada pengaduan baru.</strong> Semua pengaduan telah diproses.
+          </div>
+        <?php endif; ?>
+      </div>
+      <div class="modal-footer">
+        <a href="data-pengaduan.php" class="btn btn-primary">
+          <i class="fas fa-list mr-2"></i>Lihat Semua Pengaduan
+        </a>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Modal Notifikasi -->
+
 </body>
 </html>

@@ -31,6 +31,70 @@ include "templates/sidebar-report.php";
     <!-- Main content -->
     <section class="content">
 
+    <!-- Filter Card -->
+    <div class="card card-success">
+        <div class="card-header">
+          <h3 class="card-title"><i class="fas fa-filter mr-2"></i>Filter Report Bulanan</h3>
+        </div>
+        <form method="POST" action="report-bulanan.php">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="month">Bulan</label>
+                  <select class="form-control" id="month" name="month" required>
+                    <option value="">-- Pilih Bulan --</option>
+                    <option value="1">Januari</option>
+                    <option value="2">Februari</option>
+                    <option value="3">Maret</option>
+                    <option value="4">April</option>
+                    <option value="5">Mei</option>
+                    <option value="6">Juni</option>
+                    <option value="7">Juli</option>
+                    <option value="8">Agustus</option>
+                    <option value="9">September</option>
+                    <option value="10">Oktober</option>
+                    <option value="11">November</option>
+                    <option value="12">Desember</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="year">Tahun</label>
+                  <select class="form-control" id="year" name="year" required>
+                    <option value="">-- Pilih Tahun --</option>
+                    <?php 
+                      $currentYear = date('Y');
+                      for ($y = $currentYear; $y >= 2020; $y--) {
+                        echo "<option value='$y'>$y</option>";
+                      }
+                    ?>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>&nbsp;</label>
+                  <button type="submit" class="btn btn-success btn-block">
+                    <i class="fas fa-search mr-2"></i>Filter
+                  </button>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>&nbsp;</label>
+                  <a href="report-bulanan.php" class="btn btn-secondary btn-block">
+                    <i class="fas fa-redo mr-2"></i>Reset
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+    </div>
+    <!-- /.card -->
+
     <div class="card">
         <div class="card-header">
           <h3 class="card-title"><i class="fas fa-book mr-3"></i>Data Pengaduan Kerusakan Barang</h3>
@@ -63,7 +127,9 @@ include "templates/sidebar-report.php";
                 <th>Status</th>
                 <th>Catatan</th>
                 <th>Tgl</th>
+                <th>Ditindak Oleh</th>
                 <th>Estimasi Biaya</th>
+                
               </thead>
               <tbody align="center">
                 <?php
@@ -73,7 +139,7 @@ include "templates/sidebar-report.php";
 
                 if ($month && $year) {
                     // use intval values to prevent SQL injection in this simple example
-                    $data = query("SELECT * FROM pengaduan WHERE MONTH(tgl_lapor)='$month' AND YEAR(tgl_lapor)='$year' ORDER BY tgl_lapor DESC");
+                    $data = query("SELECT p.*, COALESCE(u.name, '-') as ditindak_oleh FROM pengaduan p LEFT JOIN pengaduan_assignment pa ON p.id = pa.pengaduan_id LEFT JOIN user u ON pa.assigned_to = u.user_id WHERE MONTH(p.tgl_lapor)='$month' AND YEAR(p.tgl_lapor)='$year' ORDER BY p.tgl_lapor DESC");
                 } else {
                     // no month/year provided — return empty array to render an empty table
                     $data = [];
@@ -91,13 +157,14 @@ include "templates/sidebar-report.php";
                   <td><?= $d['status']; ?></td>
                   <td><?= $d['ket_petugas']; ?></td>
                   <td><?= $d['tgl_lapor']; ?></td>
+                  <td><?= $d['ditindak_oleh']; ?></td>
                   <td><?= (isset($d['estimasi_biaya']) && $d['estimasi_biaya'] !== null && $d['estimasi_biaya'] !== '') ? 'Rp ' . number_format((float)$d['estimasi_biaya'], 0, ',', '.') : '-'; ?></td>
+                  
                 </tr>
                 <?php
                 endforeach;
                 ?>
               </tbody>
-              <tfoot align="center">
                 <th>No.</th>
                 <th>Nama Pegawai</th>
                 <th>Jabatan</th>
@@ -107,8 +174,11 @@ include "templates/sidebar-report.php";
                 <th>Status</th>
                 <th>Catatan</th>
                 <th>Tgl</th>
+                <th>Ditindak Oleh</th>
                 <th>Estimasi Biaya</th>
-              </tfoot>
+                
+                
+                
             </table>
           </div>
         </div>
