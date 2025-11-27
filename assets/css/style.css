@@ -1,0 +1,263 @@
+/* ========== NAVBAR ========== */
+.navbar {
+    background: #ffffff;
+    padding: 12px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.navbar-brand {
+    font-family: 'Viga', sans-serif;
+    font-size: 30px;
+}
+
+.logo {
+    height: 45px;
+    width: 45px;
+    margin-right: 10px;
+}
+
+.nav-link {
+    font-weight: 500;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+}
+
+.nav-link:hover {
+    color: #0B63DC !important;
+}
+
+.login-button {
+    border-radius: 40px;
+    padding: 6px 18px;
+}
+
+
+/* ========== HEADER SECTION ========== */
+.header-section {
+    background: linear-gradient(135deg, #f5f7fb 0%, #e4edf9 100%);
+    padding: 60px 0;
+    margin-bottom: 0;
+}
+
+.hero-content h1 {
+    font-size: 42px;
+    font-weight: bold;
+    color: #1f1f1f;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 20px;
+    color: #444;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+/* HERO IMAGE */
+.hero-img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+    margin: 0 auto;
+    vertical-align: middle;
+}
+
+
+/* ========== MAIN CONTENT ========== */
+.main-content {
+    padding: 40px 0;
+    min-height: auto;
+}
+
+
+/* ========== SEARCH AREA ========== */
+.jumbotron-search {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    max-width: 600px;
+    margin-top: 20px;
+}
+
+.search-input {
+    border-radius: 30px 0 0 30px;
+    padding: 12px 20px;
+    border: 1px solid #ddd;
+    border-right: none;
+}
+
+.search-input:focus {
+    border-color: #0B63DC;
+    box-shadow: 0 0 0 0.2rem rgba(11, 99, 220, 0.25);
+}
+
+.search-button {
+    border-radius: 0 30px 30px 0;
+    padding: 12px 20px;
+    border: none;
+}
+
+.sub-button {
+    border-radius: 30px;
+    padding: 12px 30px;
+    font-size: 18px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.sub-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+
+/* ========== FEATURES SECTION ========== */
+.features-section {
+    padding: 30px 0 20px 0;
+}
+
+.feature-card {
+    transition: all 0.3s ease;
+    background: white;
+    border: 1px solid #eee;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+
+/* ========== FORM STYLING ========== */
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    margin-bottom: 20px;
+}
+
+.card-header {
+    border-radius: 15px 15px 0 0 !important;
+}
+
+.form-control {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.form-control:focus {
+    border-color: #0B63DC;
+    box-shadow: 0 0 0 0.2rem rgba(11, 99, 220, 0.25);
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+
+/* ========== STATUS BADGES ========== */
+.badge {
+    font-size: 100%;
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+
+
+/* ========== ALERTS ========== */
+.alert {
+    border-radius: 10px;
+    font-size: 18px;
+    padding: 20px;
+}
+
+
+/* ========== FOOTER ========== */
+.text-center {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    color: #666;
+}
+
+.text-center a {
+    color: #0B63DC;
+    text-decoration: none;
+}
+
+.text-center a:hover {
+    text-decoration: underline;
+}
+
+
+/* ========== RESPONSIVE ========== */
+
+@media (max-width: 991px) {
+    .header-section {
+        padding: 50px 0;
+        text-align: center;
+    }
+
+    .hero-img {
+        max-width: 70%;
+        margin-top: 30px;
+    }
+    
+    .jumbotron-search {
+        margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 575px) {
+    .header-section {
+        padding: 40px 0;
+    }
+
+    .hero-content h1 {
+        font-size: 28px;
+    }
+
+    .hero-content p {
+        font-size: 16px;
+    }
+
+    .jumbotron-search {
+        padding: 20px;
+        margin-top: 15px;
+    }
+
+    .search-input {
+        border-radius: 30px;
+        border: 1px solid #ddd;
+        margin-bottom: 10px;
+    }
+
+    .search-button {
+        border-radius: 30px;
+        width: 100%;
+    }
+
+    .hero-img {
+        max-width: 90%;
+    }
+    
+    .main-content {
+        padding: 20px 0;
+    }
+    
+    .features-section {
+        padding: 20px 0;
+    }
+}
