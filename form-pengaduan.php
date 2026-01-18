@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
         $content .= "Keterangan: " . $ket . "\n\n";
         $content .= "===========================\n";
         $content .= "Simpan bukti ini untuk pengecekan status pengaduan.\n";
-        $content .= "Cek status di: [URL Website Anda]\n";
+        $content .= "Cek status di: [http://localhost/pkl/si-lakeba/index.php]\n";
         
         // Encode konten untuk JavaScript
         $encodedContent = base64_encode($content);

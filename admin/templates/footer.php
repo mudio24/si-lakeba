@@ -86,7 +86,14 @@
     $('#table-report').DataTable({
       dom: 'Btlip',
       buttons: [
-          'colvis', 'excel', 'pdf', 'print'
+          'colvis', 
+          'excel', 
+          {
+            extend: 'pdf',
+            orientation: 'landscape',
+            pageSize: 'LEGAL'
+          }, 
+          'print'
       ],
     });
   });
