@@ -116,7 +116,7 @@ if (isset($_GET['action'])) {
                     <?php elseif ($d['assigned_to'] == $_SESSION['login']['user_id']): ?>
                     <a href="?action=unpick&id=<?= $d['id']; ?>" class="btn btn-sm btn-outline-warning" style="font-size: 15px; padding: 6px 12px; white-space: nowrap; margin-right: 4px;" onclick="return confirm('Batalkan pick pengaduan ini?');"><i class="fas fa-times mr-1"></i>Unpick</a>
                     <?php endif; ?>
-                    <a href="delete-pengaduan.php?id=<?= $d['id']; ?>" class="btn btn-sm btn-outline-danger" style="font-size: 15px; padding: 6px 12px; white-space: nowrap;"><i class="fas fa-trash-alt mr-1"></i>Delete</a>
+                    <a href="delete-pengaduan.php?id=<?= $d['id']; ?>" class="btn btn-sm btn-outline-danger" style="font-size: 15px; padding: 6px 12px; white-space: nowrap;" onclick="return confirm('Apakah Anda yakin ingin menghapus pengaduan ini? Data yang dihapus tidak dapat dikembalikan.');"><i class="fas fa-trash-alt mr-1"></i>Delete</a>
                   </td>
                 </tr>
                 <?php
@@ -183,7 +183,7 @@ if (isset($_GET['action'])) {
                     <?php elseif ($d['assigned_to'] == $_SESSION['login']['user_id']): ?>
                     <a href="?action=unpick&id=<?= $d['id']; ?>" class="btn btn-sm btn-outline-warning" style="font-size: 15px; padding: 6px 12px; white-space: nowrap; margin-right: 4px;" onclick="return confirm('Batalkan pick pengaduan ini?');"><i class="fas fa-times mr-1"></i>Unpick</a>
                     <?php endif; ?>
-                    <a href="delete-pengaduan.php?id=<?= $d['id']; ?>" class="btn btn-sm btn-outline-danger" style="font-size: 15px; padding: 6px 12px; white-space: nowrap;"><i class="fas fa-trash-alt mr-1"></i>Delete</a>
+                    <a href="delete-pengaduan.php?id=<?= $d['id']; ?>" class="btn btn-sm btn-outline-danger" style="font-size: 15px; padding: 6px 12px; white-space: nowrap;" onclick="return confirm('Apakah Anda yakin ingin menghapus pengaduan ini? Data yang dihapus tidak dapat dikembalikan.');"><i class="fas fa-trash-alt mr-1"></i>Delete</a>
                   </td>
                 </tr>
                 <?php
@@ -250,7 +250,7 @@ if (isset($_GET['action'])) {
                     <?php elseif ($d['assigned_to'] == $_SESSION['login']['user_id']): ?>
                     <a href="?action=unpick&id=<?= $d['id']; ?>" class="btn btn-sm btn-outline-warning" style="font-size: 15px; padding: 6px 12px; white-space: nowrap; margin-right: 4px;" onclick="return confirm('Batalkan pick pengaduan ini?');"><i class="fas fa-times mr-1"></i>Unpick</a>
                     <?php endif; ?>
-                    <a href="delete-pengaduan.php?id=<?= $d['id']; ?>" class="btn btn-sm btn-outline-danger" style="font-size: 15px; padding: 6px 12px; white-space: nowrap;"><i class="fas fa-trash-alt mr-1"></i>Delete</a>
+                    <a href="delete-pengaduan.php?id=<?= $d['id']; ?>" class="btn btn-sm btn-outline-danger" style="font-size: 15px; padding: 6px 12px; white-space: nowrap;" onclick="return confirm('Apakah Anda yakin ingin menghapus pengaduan ini? Data yang dihapus tidak dapat dikembalikan.');"><i class="fas fa-trash-alt mr-1"></i>Delete</a>
                   </td>
                 </tr>
                 <?php
