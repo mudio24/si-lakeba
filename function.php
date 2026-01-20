@@ -21,6 +21,7 @@ function insertPengaduan($data) {
     date_default_timezone_set('Asia/Jakarta');
     $id = $data['id'];
     $np = htmlspecialchars($data["nama"]);
+    $no_telp = htmlspecialchars($data["no_telp"]);
     $jp = htmlspecialchars($data["jabatan"]);
     $dp = htmlspecialchars($data["dept"]);
     $nb = htmlspecialchars($data["nama_barang"]);
@@ -35,7 +36,7 @@ function insertPengaduan($data) {
         return false;
     }
 
-    mysqli_query($conn, "INSERT INTO pengaduan (id, n_pelapor, j_pelapor, d_pelapor, n_barang, ket, foto_bukti, status, ket_petugas, tgl_lapor) VALUES('$id', '$np', '$jp', '$dp', '$nb', '$ket', '$foto_bukti', '$status', '$ket_petugas', '$tgl_lapor')");
+    mysqli_query($conn, "INSERT INTO pengaduan (id, n_pelapor, no_telp, j_pelapor, d_pelapor, n_barang, ket, foto_bukti, status, ket_petugas, tgl_lapor) VALUES('$id', '$np', '$no_telp', '$jp', '$dp', '$nb', '$ket', '$foto_bukti', '$status', '$ket_petugas', '$tgl_lapor')");
     return mysqli_affected_rows($conn);
 }
 

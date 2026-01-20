@@ -114,6 +114,7 @@ include "templates/sidebar-report.php";
               <thead align="center">
                 <th>No.</th>
                 <th>Nama Pegawai</th>
+                <th>No. Telepon</th>
                 <th>Jabatan/Pangkat</th>
                 <th>Departemen</th>
                 <th>Nama Barang</th>
@@ -135,6 +136,7 @@ include "templates/sidebar-report.php";
                 <tr>
                   <td><?= $d['id']; ?></td>
                   <td><?= $d['n_pelapor']; ?></td>
+                  <td><?= isset($d['no_telp']) ? $d['no_telp'] : '-'; ?></td>
                   <td><?= $d['j_pelapor']; ?></td>
                   <td><?= $d['d_pelapor']; ?></td>
                   <td><?= $d['n_barang']; ?></td>
@@ -152,6 +154,7 @@ include "templates/sidebar-report.php";
               </tbody>
                 <th>No.</th>
                 <th>Nama Pegawai</th>
+                <th>No. Telepon</th>
                 <th>Jabatan</th>
                 <th>Departemen</th>
                 <th>Nama Barang</th>

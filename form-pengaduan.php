@@ -7,6 +7,7 @@ if (isset($_POST['submit'])) {
         // Ambil data yang baru saja diinput
         $id = $_POST['id'];
         $nama = $_POST['nama'];
+        $no_telp = $_POST['no_telp'];
         $jabatan = $_POST['jabatan'];
         $dept = $_POST['dept'];
         $nama_barang = $_POST['nama_barang'];
@@ -18,6 +19,7 @@ if (isset($_POST['submit'])) {
         $content .= "Nomor Pengaduan: " . $id . "\n";
         $content .= "Tanggal: " . $tanggal . "\n";
         $content .= "Nama Pelapor: " . $nama . "\n";
+        $content .= "No. Telepon: " . $no_telp . "\n";
         $content .= "Jabatan: " . $jabatan . "\n";
         $content .= "Departemen: " . $dept . "\n";
         $content .= "Nama Barang: " . $nama_barang . "\n";
@@ -101,6 +103,12 @@ $departemen = [
           <div class="form-group col-md-12">
             <label for="nama">Nama Pelapor</label>
             <input type="text" name="nama" id="nama" class="form-control" required>
+          </div>
+          
+          <div class="form-group col-md-12">
+            <label for="no_telp">Nomor Telepon</label>
+            <input type="tel" name="no_telp" id="no_telp" class="form-control" placeholder="Contoh: 081234567890" required>
+            <small class="form-text text-muted">Masukkan nomor telepon yang bisa dihubungi</small>
           </div>
           
           <div class="form-group col-md-12">
